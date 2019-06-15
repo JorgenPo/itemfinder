@@ -1,4 +1,4 @@
-package findthing
+package types
 
 // Crawler gets item links for some query
 

@@ -1,7 +1,7 @@
 package avito
 
 import (
-	"findthing"
+	"findthing/types"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
@@ -18,7 +18,7 @@ type Crawler struct {
 
 }
 
-func makeURL(q findthing.Query) string {
+func makeURL(q types.Query) string {
 	params := url.Values{}
 
 	if len(q.Query) > 0 {
@@ -29,7 +29,7 @@ func makeURL(q findthing.Query) string {
 	return fmt.Sprintf("%v/%v?%v", ENDPOINT, q.City, params.Encode())
 }
 
-func (c *Crawler) GetResults(q findthing.Query) ([]string, error) {
+func (c *Crawler) GetResults(q types.Query) ([]string, error) {
 	urlString := makeURL(q)
 
 	res, err := http.Get(urlString)
@@ -47,7 +47,7 @@ func (c *Crawler) GetResults(q findthing.Query) ([]string, error) {
 	page.Find("a.item-description-title-link").Each(func(num int, s *goquery.Selection) {
 		href, exists := s.Attr("href")
 		if exists {
-			results = append(results, href)
+			results = append(results, fmt.Sprintf("%v%v", ENDPOINT, href))
 		}
 	})
 
