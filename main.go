@@ -21,6 +21,9 @@ func printHelp() {
 
 func printResult(n int, item *types.Item) {
 	fmt.Printf("================   Result #%v '%v'   ================\n", n+1, item.Title)
+	fmt.Println()
+	fmt.Printf("Price %v rubles\n", item.Price)
+	fmt.Println()
 	fmt.Println(item.Address)
 	fmt.Printf("Telephone: %v\n", item.PhoneNumber)
 

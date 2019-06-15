@@ -13,6 +13,7 @@ type Item struct {
 	PhoneNumber string
 	User User
 	Address string
+	Price int
 }
 
 // Parser parse items from a given url

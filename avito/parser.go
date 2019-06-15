@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -59,6 +60,12 @@ func (*Parser) Parse(itemUrl string) (*types.Item, error) {
 	address := page.Find(".item-map-address"); if len(address.Text()) > 0 {
 		item.Address = strings.Trim(address.Text(), "\n ")
 	}
+
+	price := page.Find(".js-item-price").First(); if len(price.Text()) > 0 {
+		priceText := strings.Replace(price.Text(), " ", "", -1)
+		item.Price, _ = strconv.Atoi(priceText)
+	}
+
 
 	parseUser(page, &item)
 

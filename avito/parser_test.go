@@ -19,4 +19,5 @@ func TestParser_Parse(t *testing.T) {
 	assert.Equal(t, item.PhoneNumber, "8 931 XXX-XX-XX")
 	assert.Equal(t, item.User.Name, "Лилит")
 	assert.Equal(t, item.Address, "метро , 2 линия, Санкт-Петербург, Звёздная")
+	assert.Equal(t, item.Price, 1300)
 }
